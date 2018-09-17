@@ -33,4 +33,15 @@ public class PlayerTest
 
         assertTrue(dealer.toString().split(" ").length == 1);
     }
+
+    @Test
+    //Test that players hands increment size when adding cards
+    public void CheckPlayerDealing(){
+        
+        Player player = new Player(false);
+        assertTrue(player.getHandSize() == 0);
+
+        player.giveCard(new Card("H", "K"));
+        assertTrue(player.getHandSize() == 1);
+    }
 }
