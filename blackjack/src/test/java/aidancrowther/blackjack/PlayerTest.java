@@ -128,4 +128,50 @@ public class PlayerTest
         Player dealer = new Player(true);
         assertTrue(dealer.isDealer());
     }
+
+    @Test
+    //Verify that a user correctly reports the ability to split
+    public void checkCanSplit(){
+
+        Player player = new Player(false);
+
+        player.giveCard(new Card("H", "K"));
+        player.giveCard(new Card("H", "Q"));
+
+        assertFalse(player.canSplit());
+
+        player = new Player(false);
+
+        player.giveCard(new Card("H", "K"));
+        player.giveCard(new Card("C", "K"));
+
+        assertTrue(player.canSplit());
+
+        player = new Player(false);
+
+        player.giveCard(new Card("H", "K"));
+        player.giveCard(new Card("C", "K"));
+        player.giveCard(new Card("H", "A"));
+
+        assertFalse(player.canSplit());
+    }
+
+    @Test
+    //Test creating a new player who has already split
+    public void CheckHasSplit(){
+
+        Player player = new Player(false);
+
+        player.giveCard(new Card("H", "K"));
+        player.giveCard(new Card("C", "K"));
+
+        assertTrue(player.canSplit());
+
+        player = new Player(false, true);
+
+        player.giveCard(new Card("H", "K"));
+        player.giveCard(new Card("C", "K"));
+
+        assertFalse(player.canSplit());
+    }
 }
