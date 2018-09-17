@@ -13,10 +13,17 @@ public class Player{
     int acesValue = 0;
     int numAces = 0;
     Boolean dealer = false;
+    Boolean hasSplit = false;
 
     //Create a new player object
     public Player(Boolean dealer){
         this.dealer = dealer;
+    }
+
+    //Create a new player allowing to specify whther they have already split
+    public Player(Boolean dealer, Boolean split){
+        this.dealer = dealer;
+        this.hasSplit = split;
     }
 
     //Give the player a new card, updating the score
@@ -84,6 +91,33 @@ public class Player{
     //Return true if the player has a blackjack
     public Boolean hasBJ(){
         return (hand.size() == 2) && (handValue == 21);
+    }
+
+    //Determine whether a player can split
+    public Boolean canSplit(){
+        if(hand.size() == 2) return (hand.get(0).getValue().equals(hand.get(1).getValue())) && !hasSplit;
+        return false;
+    }
+
+    //Return the last card of the players hand
+    public Card takeCard(){
+
+        hasSplit = true;
+        //Update the card list and hand value
+        Card card = hand.get(hand.size()-1);
+        if(card.getValue() != "A"){
+            if (card.getValue().matches("[-+]?\\d*\\.?\\d+")){
+                handValue -= Integer.parseInt(card.getValue());
+            }
+            else if(!card.getValue().equals("A")){
+                handValue -= 10;
+            }
+        }
+        else{
+            numAces--;
+            handValue = 11;
+        }
+        return hand.remove(hand.size()-1);
     }
 
     //Print the players hand in a readable format
