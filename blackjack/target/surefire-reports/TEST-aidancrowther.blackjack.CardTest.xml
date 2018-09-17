@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="aidancrowther.blackjack.CardTest" time="0.023" tests="2" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="aidancrowther.blackjack.CardTest" time="0.039" tests="2" errors="0" skipped="0" failures="0">
   <properties>
     <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
     <property name="file.encoding.pkg" value="sun.io"/>
@@ -16,7 +16,7 @@
     <property name="user.country" value="US"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-8-openjdk/jre/lib/amd64"/>
-    <property name="sun.java.command" value="/home/aidancrowther/Documents/Projects/BlackJack/Release/BlackJack/blackjack/target/surefire/surefirebooter1518086018050485156.jar /home/aidancrowther/Documents/Projects/BlackJack/Release/BlackJack/blackjack/target/surefire 2018-09-17T15-50-27_073-jvmRun1 surefire2453049262479972057tmp surefire_08890893768916263202tmp"/>
+    <property name="sun.java.command" value="/home/aidancrowther/Documents/Projects/BlackJack/Release/BlackJack/blackjack/target/surefire/surefirebooter6898609019907152201.jar /home/aidancrowther/Documents/Projects/BlackJack/Release/BlackJack/blackjack/target/surefire 2018-09-17T16-49-43_832-jvmRun1 surefire6190119973947163149tmp surefire_03463947561425876118tmp"/>
     <property name="surefire.test.class.path" value="/home/aidancrowther/Documents/Projects/BlackJack/Release/BlackJack/blackjack/target/test-classes:/home/aidancrowther/Documents/Projects/BlackJack/Release/BlackJack/blackjack/target/classes:/home/aidancrowther/.m2/repository/junit/junit/4.11/junit-4.11.jar:/home/aidancrowther/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="/home/aidancrowther"/>
@@ -29,7 +29,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"/>
-    <property name="surefire.real.class.path" value="/home/aidancrowther/Documents/Projects/BlackJack/Release/BlackJack/blackjack/target/surefire/surefirebooter1518086018050485156.jar"/>
+    <property name="surefire.real.class.path" value="/home/aidancrowther/Documents/Projects/BlackJack/Release/BlackJack/blackjack/target/surefire/surefirebooter6898609019907152201.jar"/>
     <property name="sun.boot.class.path" value="/usr/lib/jvm/java-8-openjdk/jre/lib/resources.jar:/usr/lib/jvm/java-8-openjdk/jre/lib/rt.jar:/usr/lib/jvm/java-8-openjdk/jre/lib/sunrsasign.jar:/usr/lib/jvm/java-8-openjdk/jre/lib/jsse.jar:/usr/lib/jvm/java-8-openjdk/jre/lib/jce.jar:/usr/lib/jvm/java-8-openjdk/jre/lib/charsets.jar:/usr/lib/jvm/java-8-openjdk/jre/lib/jfr.jar:/usr/lib/jvm/java-8-openjdk/jre/classes"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="1.8.0_181-b13"/>
@@ -57,6 +57,6 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="52.0"/>
   </properties>
-  <testcase name="CheckCardInit" classname="aidancrowther.blackjack.CardTest" time="0.001"/>
+  <testcase name="CheckCardInit" classname="aidancrowther.blackjack.CardTest" time="0.003"/>
   <testcase name="CheckCardPrint" classname="aidancrowther.blackjack.CardTest" time="0"/>
 </testsuite>

@@ -50,7 +50,7 @@ public class Player{
         //Loop for every ace in the hand
         for(int i=0; i<numAces; i++){
             //Attempt to add the maximum ace value without busting
-            if(handValue+11+(numAces-i) <= 21){
+            if(handValue+11+(numAces-(i+1)) <= 21){
                 acesValue += 11;
                 handValue += 11;
             }

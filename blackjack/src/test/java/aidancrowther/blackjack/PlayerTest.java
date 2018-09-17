@@ -66,20 +66,66 @@ public class PlayerTest
 
         assertTrue(player.getHandValue() == 0);
 
-        player.giveCard(new Card("H", "2"));
-        assertTrue(player.getHandValue() == 2);
+        player.giveCard(new Card("S", "A"));
+        assertTrue(player.getHandValue() == 11);
 
         player.giveCard(new Card("H", "A"));
-        assertTrue(player.getHandValue() == 13);
+        assertTrue(player.getHandValue() == 12);
 
         player.giveCard(new Card("C", "A"));
-        assertTrue(player.getHandValue() == 14);
+        assertTrue(player.getHandValue() == 13);
 
         player.giveCard(new Card("H", "K"));
-        assertTrue(player.getHandValue() == 14);
+        assertTrue(player.getHandValue() == 13);
 
         player.giveCard(new Card("H", "Q"));
-        assertTrue(player.getHandValue() == 24);
+        assertTrue(player.getHandValue() == 23);
 
+    }
+
+    @Test
+    //Verify that the user can identify a blackjack
+    public void CheckBJ(){
+        Player player = new Player(false);
+
+        player.giveCard(new Card("H", "K"));
+        player.giveCard(new Card("H", "Q"));
+
+        assertFalse(player.hasBJ());
+
+        player = new Player(false);
+
+        player.giveCard(new Card("H", "K"));
+        player.giveCard(new Card("H", "A"));
+
+        assertTrue(player.hasBJ());
+
+    }
+
+    @Test
+    //Verify that the player can identify a soft 17
+    public void CheckSoft(){
+
+        Player player = new Player(false);
+
+        player.giveCard(new Card("H", "A"));
+        player.giveCard(new Card("H", "5"));
+
+        assertFalse(player.getSoft());
+
+        player.giveCard(new Card("C", "A"));
+
+        assertTrue(player.getSoft());
+    }
+
+    @Test
+    //Verify that a dealer is reported as one and a player is not
+    public void CheckIsDealer(){
+
+        Player player = new Player(false);
+        assertFalse(player.isDealer());
+
+        Player dealer = new Player(true);
+        assertTrue(dealer.isDealer());
     }
 }
