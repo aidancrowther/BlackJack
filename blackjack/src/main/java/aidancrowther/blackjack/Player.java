@@ -71,6 +71,21 @@ public class Player{
         return hand.size();
     }
 
+    //Return true if the player is a dealer
+    public Boolean isDealer(){
+        return dealer;
+    }
+
+    //Return true if the player has a soft 17
+    public Boolean getSoft(){
+        return (handValue == 17 && numAces > 0 && (handValue - acesValue) <= 6);
+    }
+
+    //Return true if the player has a blackjack
+    public Boolean hasBJ(){
+        return (hand.size() == 2) && (handValue == 21);
+    }
+
     //Print the players hand in a readable format
     @Override
     public String toString(){
