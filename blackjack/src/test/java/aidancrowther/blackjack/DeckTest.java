@@ -24,6 +24,7 @@ public class DeckTest
     }
 
     @Test
+    //Assert that two shuffled decks will not be the same
     public void checkDeckShuffle(){
         Deck deckOne = new Deck();
         Deck deckTwo = new Deck();
