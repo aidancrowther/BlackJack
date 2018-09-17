@@ -1,5 +1,6 @@
 package aidancrowther.blackjack;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import org.junit.Test;
 
@@ -20,5 +21,25 @@ public class DeckTest
 
         assertTrue(counter == 52);
 
+    }
+
+    @Test
+    public void checkDeckShuffle(){
+        Deck deckOne = new Deck();
+        Deck deckTwo = new Deck();
+        
+        deckOne.shuffle();
+        deckTwo.shuffle();
+
+        Boolean decksAreEqual = true;
+
+        while(!deckOne.isEmpty() && !deckTwo.isEmpty()){
+            Card cardOne = deckOne.pop();
+            Card cardTwo = deckTwo.pop();
+
+            decksAreEqual &= cardOne.toString().equals(cardTwo.toString());
+        }
+
+        assertFalse(decksAreEqual);
     }
 }
