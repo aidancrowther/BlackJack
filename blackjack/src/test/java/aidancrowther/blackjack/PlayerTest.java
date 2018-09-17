@@ -174,4 +174,25 @@ public class PlayerTest
 
         assertFalse(player.canSplit());
     }
+
+    @Test
+    //Test taking a card from a players hand
+    public void CheckTakingCard(){
+
+        Player player = new Player(false);
+
+        assertTrue(player.getHandSize() == 0);
+
+        player.giveCard(new Card("H", "K"));
+        assertTrue(player.getHandSize() == 1);
+
+        Card received = player.takeCard();
+        assertTrue(player.getHandSize() == 0);
+        assertTrue(received.getSuit().equals("H"));
+        assertTrue(received.getValue().equals("K"));
+
+        player.giveCard(new Card("H", "J"));
+        player.giveCard(new Card("H", "Q"));
+        assertFalse(player.canSplit());
+    }
 }
