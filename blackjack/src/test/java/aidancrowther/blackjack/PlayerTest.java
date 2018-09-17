@@ -76,6 +76,10 @@ public class PlayerTest
         assertTrue(player.getHandValue() == 14);
 
         player.giveCard(new Card("H", "K"));
+        assertTrue(player.getHandValue() == 14);
+
+        player.giveCard(new Card("H", "Q"));
         assertTrue(player.getHandValue() == 24);
+
     }
 }
