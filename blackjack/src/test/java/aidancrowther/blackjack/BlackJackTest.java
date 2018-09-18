@@ -164,43 +164,96 @@ public class BlackJackTest{
     @Test
     //Verify that the user can be asked to replay
     //Test with yes
-    public void testYesReplay(){
+    public void CheckYesReplay(){
 
         BlackJack.outputHistory = "";
         BlackJack.running = true;
         BlackJack.scanner = new Scanner("y\n");
         BlackJack.replay();
 
-        AssertTrue(BlackJack.running);
+        assertTrue(BlackJack.running);
         assertFalse(BlackJack.outputHistory.contains("Invalid input, please try again"));
     }
 
     @Test
     //Verify that the user can be asked to replay
     //Test with no
-    public void testNoReplay(){
+    public void CheckNoReplay(){
 
         BlackJack.outputHistory = "";
         BlackJack.running = true;
         BlackJack.scanner = new Scanner("n");
         BlackJack.replay();
 
-        AssertFalse(BlackJack.running);
+        assertFalse(BlackJack.running);
         assertFalse(BlackJack.outputHistory.contains("Invalid input, please try again"));
     }
 
     @Test
     //Verify that the user can be asked to replay
     //Test with invalid
-    public void testInvalidReplay(){
+    public void CheckInvalidReplay(){
 
         BlackJack.outputHistory = "";
         BlackJack.running = true;
         BlackJack.scanner = new Scanner("j\ny");
         BlackJack.replay();
 
-        AssertTrue(BlackJack.running);
+        assertTrue(BlackJack.running);
         assertTrue(BlackJack.outputHistory.contains("Invalid input, please try again"));
     }
 
+    @Test
+    //Verify that hands display correctly
+    public void CheckDisplayPlaying(){
+
+        BlackJack.players = new ArrayList<>();
+        BlackJack.dealers = new ArrayList<>();
+
+        BlackJack.players.add(new Player(false));
+        BlackJack.dealers.add(new Player(true));
+        BlackJack.outputHistory = "";
+        BlackJack.deck.push(new Card("H", "K"));
+        BlackJack.deck.push(new Card("H", "J"));
+        BlackJack.deck.push(new Card("H", "Q"));
+        BlackJack.deck.push(new Card("H", "A"));
+
+        BlackJack.players.get(0).giveCard(BlackJack.deck.pop());
+        BlackJack.players.get(0).giveCard(BlackJack.deck.pop());
+        BlackJack.dealers.get(0).giveCard(BlackJack.deck.pop());
+        BlackJack.dealers.get(0).giveCard(BlackJack.deck.pop());
+
+        BlackJack.showHands(false);
+
+        assertTrue(BlackJack.outputHistory.contains("HA HQ"));
+        assertFalse(BlackJack.outputHistory.contains("HJ"));
+        assertTrue(BlackJack.outputHistory.contains("HK showing"));
+    }
+
+    @Test
+     //Verify that hands display correctly at the end of play
+     public void CheckDisplayEnding(){
+
+        BlackJack.players = new ArrayList<>();
+        BlackJack.dealers = new ArrayList<>();
+
+        BlackJack.players.add(new Player(false));
+        BlackJack.dealers.add(new Player(true));
+        BlackJack.outputHistory = "";
+        BlackJack.deck.push(new Card("H", "K"));
+        BlackJack.deck.push(new Card("H", "J"));
+        BlackJack.deck.push(new Card("H", "Q"));
+        BlackJack.deck.push(new Card("H", "A"));
+
+        BlackJack.players.get(0).giveCard(BlackJack.deck.pop());
+        BlackJack.players.get(0).giveCard(BlackJack.deck.pop());
+        BlackJack.dealers.get(0).giveCard(BlackJack.deck.pop());
+        BlackJack.dealers.get(0).giveCard(BlackJack.deck.pop());
+
+        BlackJack.showHands(true);
+
+        assertTrue(BlackJack.outputHistory.contains("HA HQ"));
+        assertTrue(BlackJack.outputHistory.contains("HJ"));
+        assertTrue(BlackJack.outputHistory.contains("HK"));
+    }
 }

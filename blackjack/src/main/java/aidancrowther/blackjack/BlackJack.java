@@ -15,6 +15,7 @@ public class BlackJack{
     protected static int inputMethod = 0;
     protected static String outputHistory = "";
     protected static Boolean dealSplit = false;
+    protected static Boolean running = true;
 
     //Local game objects
     protected static Deck deck;
@@ -131,6 +132,31 @@ public class BlackJack{
                 output("Invalid selection, please try again");
                 return true;
 
+        }
+    }
+
+    protected static void replay(){
+
+        Boolean waiting = true;
+
+        while(waiting){
+            System.out.println("Play again?\nY/N");
+            pad();
+            String selection = scanner.nextLine().toLowerCase();
+
+            switch(selection){
+                case("y"):
+                    waiting = false;
+                break;
+
+                case("n"):
+                    running = false;
+                    waiting = false;
+                break;
+
+                default:
+                    output("Invalid input, please try again");
+            }
         }
     }
 
