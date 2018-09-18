@@ -256,4 +256,32 @@ public class BlackJackTest{
         assertTrue(BlackJack.outputHistory.contains("HJ"));
         assertTrue(BlackJack.outputHistory.contains("HK"));
     }
+
+    @Test
+    //Verify that the user and dealer are dealt hands correctly
+    public void CheckDealingDeck(){
+
+        BlackJack.players.add(new Player(false));
+        BlackJack.dealers.add(new Player(true));
+
+        BlackJack.dealHands();
+
+        assertTrue(BlackJack.players.get(0).getHandSize() == 2);
+        assertTrue(BlackJack.dealers.get(0).getHandSize() == 2);
+    }
+
+    @Test
+    //Verify that the user and dealer are dealt hands correctly
+    public void CheckDealingFile(){
+
+        BlackJack.players.add(new Player(false));
+        BlackJack.dealers.add(new Player(true));
+
+        String hands[] = {"HK", "HA", "HQ", "HJ"};
+
+        BlackJack.dealHands(hands);
+
+        assertTrue(BlackJack.players.get(0).getHandSize() == 2);
+        assertTrue(BlackJack.dealers.get(0).getHandSize() == 2);
+    }
 }
