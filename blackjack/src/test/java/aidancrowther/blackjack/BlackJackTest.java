@@ -261,8 +261,13 @@ public class BlackJackTest{
     //Verify that the user and dealer are dealt hands correctly
     public void CheckDealingDeck(){
 
+        BlackJack.players = new ArrayList<>();
+        BlackJack.dealers = new ArrayList<>();
+
         BlackJack.players.add(new Player(false));
         BlackJack.dealers.add(new Player(true));
+
+        BlackJack.deck = new Deck();
 
         BlackJack.dealHands();
 
@@ -273,6 +278,9 @@ public class BlackJackTest{
     @Test
     //Verify that the user and dealer are dealt hands correctly
     public void CheckDealingFile(){
+
+        BlackJack.players = new ArrayList<>();
+        BlackJack.dealers = new ArrayList<>();
 
         BlackJack.players.add(new Player(false));
         BlackJack.dealers.add(new Player(true));

@@ -186,4 +186,22 @@ public class BlackJack{
         }
     }
 
+    //Give the player and dealer cards off the top of the deck
+    protected static void dealHands(){
+
+        players.get(0).giveCard(deck.pop());
+        players.get(0).giveCard(deck.pop());
+        dealers.get(0).giveCard(deck.pop());
+        dealers.get(0).giveCard(deck.pop());
+    }
+
+    //Give the player and dealer cards in a given array
+    protected static void dealHands(String[] s){
+
+        players.get(0).giveCard(new Card(s[0].split("")[0], s[0].substring(1)));
+        players.get(0).giveCard(new Card(s[1].split("")[0], s[1].substring(1)));
+        dealers.get(0).giveCard(new Card(s[2].split("")[0], s[2].substring(1)));
+        dealers.get(0).giveCard(new Card(s[3].split("")[0], s[3].substring(1)));
+    }
+
 }
