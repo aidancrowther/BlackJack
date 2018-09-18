@@ -31,4 +31,35 @@ public class BlackJackTest{
         assertTrue(BlackJack.inputMethod == 0);
     }
 
+    @Test
+    //Verify that player can hit
+    public void CheckPlayerHit(){
+
+        Player player = new Player(false);
+
+        BlackJack.deck = new Deck();
+
+        assertTrue(player.getHandSize() == 0);
+
+        //Should take in an input and player
+        //Outputs True/False depending on whether or not to continue
+        //Should modify the players hand if we hit/split
+        assertTrue(BlackJack.processSelection("H", player));
+        assertTrue(player.getHandSize() == 1);
+    }
+
+    @Test
+    //Verify that player can hit
+    public void CheckPlayerStand(){
+
+        Player player = new Player(false);
+
+        BlackJack.deck = new Deck();
+
+        //Should take in an input and player
+        //Outputs True/False depending on whether or not to continue
+        //Should modify the players hand if we hit/split
+        assertFalse(BlackJack.processSelection("S", player));
+    }
+
 }

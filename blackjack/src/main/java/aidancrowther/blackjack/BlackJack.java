@@ -13,6 +13,7 @@ public class BlackJack{
 
     //Game control objects and variables
     protected static int inputMethod = 0;
+    protected static String output = "";
 
     //User input scanner
     protected static Scanner scanner = new Scanner(System.in);
@@ -22,7 +23,8 @@ public class BlackJack{
         Boolean waiting = true;
         
         while(waiting){
-            System.out.println("Please select control method:\n\nC) Command Line\nF) File input\nG) GUI");
+            output += ("Please select control method:\n\nC) Command Line\nF) File input\nG) GUI");
+            output();
             pad();
             String selection = scanner.nextLine().toLowerCase();
 
@@ -43,13 +45,14 @@ public class BlackJack{
                 break;
 
                 default:
-                    System.out.println("Invalid input, please try again");
+                    output += ("Invalid input, please try again");
+                    output();
             }
         }
     }
 
-    private static void output(String s){
-        System.out.println(s);
+    private static void output(){
+        if(inputMethod != 2) System.out.println(output);
     }
 
     private static void pad(){
