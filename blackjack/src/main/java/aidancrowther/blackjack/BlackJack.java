@@ -14,6 +14,7 @@ public class BlackJack{
     //Game control objects and variables
     protected static int inputMethod = 0;
     protected static String outputHistory = "";
+    protected static Boolean dealSplit = false;
 
     //Local game objects
     protected static Deck deck;
@@ -69,6 +70,7 @@ public class BlackJack{
     }
 
     protected static Boolean processSelection(String selection, Player p){
+
         switch(selection.toLowerCase()){
             case("s"):
                 output("Stand");
