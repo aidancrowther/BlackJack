@@ -16,7 +16,7 @@
     <property name="user.country" value="US"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-8-openjdk/jre/lib/amd64"/>
-    <property name="sun.java.command" value="/home/aidancrowther/Documents/Projects/BlackJack/Release/BlackJack/blackjack/target/surefire/surefirebooter4387896540964174398.jar /home/aidancrowther/Documents/Projects/BlackJack/Release/BlackJack/blackjack/target/surefire 2018-09-18T12-20-36_575-jvmRun1 surefire7999836525496279267tmp surefire_03684112622469146024tmp"/>
+    <property name="sun.java.command" value="/home/aidancrowther/Documents/Projects/BlackJack/Release/BlackJack/blackjack/target/surefire/surefirebooter5290303829577029697.jar /home/aidancrowther/Documents/Projects/BlackJack/Release/BlackJack/blackjack/target/surefire 2018-09-18T12-45-55_030-jvmRun1 surefire6322042705953938455tmp surefire_06548717588933141868tmp"/>
     <property name="surefire.test.class.path" value="/home/aidancrowther/Documents/Projects/BlackJack/Release/BlackJack/blackjack/target/test-classes:/home/aidancrowther/Documents/Projects/BlackJack/Release/BlackJack/blackjack/target/classes:/home/aidancrowther/.m2/repository/junit/junit/4.11/junit-4.11.jar:/home/aidancrowther/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="/home/aidancrowther"/>
@@ -29,7 +29,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"/>
-    <property name="surefire.real.class.path" value="/home/aidancrowther/Documents/Projects/BlackJack/Release/BlackJack/blackjack/target/surefire/surefirebooter4387896540964174398.jar"/>
+    <property name="surefire.real.class.path" value="/home/aidancrowther/Documents/Projects/BlackJack/Release/BlackJack/blackjack/target/surefire/surefirebooter5290303829577029697.jar"/>
     <property name="sun.boot.class.path" value="/usr/lib/jvm/java-8-openjdk/jre/lib/resources.jar:/usr/lib/jvm/java-8-openjdk/jre/lib/rt.jar:/usr/lib/jvm/java-8-openjdk/jre/lib/sunrsasign.jar:/usr/lib/jvm/java-8-openjdk/jre/lib/jsse.jar:/usr/lib/jvm/java-8-openjdk/jre/lib/jce.jar:/usr/lib/jvm/java-8-openjdk/jre/lib/charsets.jar:/usr/lib/jvm/java-8-openjdk/jre/lib/jfr.jar:/usr/lib/jvm/java-8-openjdk/jre/classes"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="1.8.0_181-b13"/>

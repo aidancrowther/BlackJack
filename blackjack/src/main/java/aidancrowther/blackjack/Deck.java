@@ -37,4 +37,9 @@ public class Deck{
         Collections.shuffle(deck);
     }
 
+    //Push a card onto the deck
+    public void push(Card c){
+        deck.push(c);
+    }
+
 }

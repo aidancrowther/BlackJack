@@ -103,6 +103,7 @@ public class BlackJackTest{
         BlackJack.inputMethod = 0;
         BlackJack.outputHistory = "";
 
+        //Verify that a game will not split illegaly
         assertTrue(BlackJack.processSelection("D", player));
         assertTrue(BlackJack.players.size() == 1);
         assertFalse(BlackJack.dealSplit);
@@ -125,6 +126,7 @@ public class BlackJackTest{
         BlackJack.deck = new Deck();
         BlackJack.outputHistory = "";
 
+        //Test that splitting functions correctly under normal play
         assertTrue(BlackJack.processSelection("D", BlackJack.players.get(0)));
         assertTrue(BlackJack.players.size() == 2);
         assertTrue(BlackJack.dealSplit);
@@ -149,6 +151,7 @@ public class BlackJackTest{
         BlackJack.deck.push(new Card("H", "A"));
         BlackJack.outputHistory = "";
 
+        //Test that A split into a blackjack is detected
         assertFalse(BlackJack.processSelection("D", BlackJack.players.get(0)));
         assertTrue(BlackJack.players.size() == 2);
         assertTrue(BlackJack.dealSplit);

@@ -71,15 +71,54 @@ public class BlackJack{
 
     protected static Boolean processSelection(String selection, Player p){
 
+        //Switch on user input
         switch(selection.toLowerCase()){
+
+            //If standing, return false
             case("s"):
                 output("Stand");
                 return false;
 
+            //If hitting, give the player a new card; either from the deck or file input
             case("h"):
                 output("Hit");
                 if(inputMethod != 1) p.giveCard(deck.pop());
                 else p.giveCard(new Card(commandSequence.get(command).split("")[0], commandSequence.get(command++).substring(1)));
+                return true;
+
+            //If splitting...
+            case("d"):
+
+                //Verify that the player can split
+                if(p.canSplit()){
+                    output("Split");
+                    Player newPlayer = new Player(false, false);
+
+                    //Create a dealer if the player is a dealer
+                    if(p.isDealer()) newPlayer = new Player(true, false);
+
+                    //Give the new player one of the first players cards
+                    newPlayer.giveCard(p.takeCard());
+                        //Determine card source based on input method
+                        if(inputMethod != 1){
+                            p.giveCard(deck.pop());
+                            dealSplit = true;
+                        }
+                        else{
+                            p.giveCard(new Card(commandSequence.get(command).split("")[0], commandSequence.get(command++).substring(1)));
+                            dealSplit = true;
+                        }
+
+                    //Add the player to the correct list
+                    if(p.isDealer()) dealers.add(newPlayer);
+                    else players.add(newPlayer);
+
+                    //Don't loop if the player has a blackjack
+                    if(p.hasBJ()) return false;
+                }
+                else{
+                    output("Cannot split");
+                }
                 return true;
 
             default:
