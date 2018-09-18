@@ -135,6 +135,7 @@ public class BlackJack{
         }
     }
 
+    //Request if the user would like to play again
     protected static void replay(){
 
         Boolean waiting = true;
@@ -156,6 +157,31 @@ public class BlackJack{
 
                 default:
                     output("Invalid input, please try again");
+            }
+        }
+    }
+
+    //Display the players hands
+    protected static void showHands(Boolean end){
+
+        //Play the players hands
+        output("Player:");
+        for(int i=0; i<players.size(); i++){
+            output("Hand " + (i+1) + ": " + players.get(i).toString());
+        }
+
+        //If we are done playing, display the entirety of the dealers hands
+        if(!end){
+            output("\nDealer:");
+            for(int i=0; i<dealers.size(); i++){
+                output("Hand " + (i+1) + ": " + dealers.get(i).toString() + "showing");
+            }
+        }
+        //Otherwise print all of the dealers cards except for the first one
+        else{
+            output("\nDealer:");
+            for(int i=0; i<dealers.size(); i++){
+                output("Hand " + (i+1) + ": " + dealers.get(i).toString(true));
             }
         }
     }
