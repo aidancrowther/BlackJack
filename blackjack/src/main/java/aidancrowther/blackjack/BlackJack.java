@@ -115,12 +115,18 @@ public class BlackJack{
 
                     //Don't loop if the player has a blackjack
                     if(p.hasBJ()) return false;
+
+                    //showHands(false);
                 }
+                //Otherwise report that splitting is not allowed
                 else{
                     output("Cannot split");
                 }
+
+                //Return true to continue the hand
                 return true;
 
+            //Identify invalid command selection
             default:
                 output("Invalid selection, please try again");
                 return true;

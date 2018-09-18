@@ -161,4 +161,46 @@ public class BlackJackTest{
         assertTrue(BlackJack.outputHistory.contains("Split"));
     }
 
+    @Test
+    //Verify that the user can be asked to replay
+    //Test with yes
+    public void testYesReplay(){
+
+        BlackJack.outputHistory = "";
+        BlackJack.running = true;
+        BlackJack.scanner = new Scanner("y\n");
+        BlackJack.replay();
+
+        AssertTrue(BlackJack.running);
+        assertFalse(BlackJack.outputHistory.contains("Invalid input, please try again"));
+    }
+
+    @Test
+    //Verify that the user can be asked to replay
+    //Test with no
+    public void testNoReplay(){
+
+        BlackJack.outputHistory = "";
+        BlackJack.running = true;
+        BlackJack.scanner = new Scanner("n");
+        BlackJack.replay();
+
+        AssertFalse(BlackJack.running);
+        assertFalse(BlackJack.outputHistory.contains("Invalid input, please try again"));
+    }
+
+    @Test
+    //Verify that the user can be asked to replay
+    //Test with invalid
+    public void testInvalidReplay(){
+
+        BlackJack.outputHistory = "";
+        BlackJack.running = true;
+        BlackJack.scanner = new Scanner("j\ny");
+        BlackJack.replay();
+
+        AssertTrue(BlackJack.running);
+        assertTrue(BlackJack.outputHistory.contains("Invalid input, please try again"));
+    }
+
 }
