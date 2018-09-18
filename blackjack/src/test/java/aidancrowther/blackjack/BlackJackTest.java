@@ -32,6 +32,16 @@ public class BlackJackTest{
     }
 
     @Test
+    //Catch invalid play mode selection
+    public void CheckInvalidCatch(){
+
+        BlackJack.scanner = new Scanner("j\nc");
+        BlackJack.init();
+
+        assertTrue(BlackJack.outputHistory.contains("Invalid input, please try again"));
+    }
+
+    @Test
     //Verify that player can hit
     public void CheckPlayerHit(){
 
