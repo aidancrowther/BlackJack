@@ -299,7 +299,7 @@ public class BlackJackTest{
         BlackJack.scanner = new Scanner("Files/file1.txt");
         BlackJack.commandSequence = new ArrayList<>();
 
-        BlackJack.fileGame();
+        BlackJack.fileGame(false);
 
         assertTrue(BlackJack.commandSequence.size() == 4);
 
@@ -317,7 +317,7 @@ public class BlackJackTest{
         BlackJack.commandSequence = new ArrayList<>();
         BlackJack.outputHistory = "";
 
-        BlackJack.fileGame();
+        BlackJack.fileGame(false);
 
         assertTrue(BlackJack.commandSequence.size() == 4);
         assertTrue(BlackJack.commandSequence.get(0).equals("SK"));
@@ -335,7 +335,7 @@ public class BlackJackTest{
         BlackJack.commandSequence = new ArrayList<>();
         BlackJack.outputHistory = "";
 
-        BlackJack.fileGame();
+        BlackJack.fileGame(false);
 
         assertTrue(BlackJack.commandSequence.size() == 4);
         assertTrue(BlackJack.commandSequence.get(0).equals("SK"));
@@ -386,5 +386,600 @@ public class BlackJackTest{
 
         assertTrue(BlackJack.players.get(0).toString().contains("HK HA"));
         assertTrue(BlackJack.dealers.get(0).toString(true).contains("HQ HJ"));
+    }
+
+    @Test
+    //Verify that winners are determined correctly
+    //If both have blackjack, dealer wins
+    public void CheckBBJ(){
+
+        BlackJack.outputHistory = "";
+
+        Player player = new Player(false);
+        player.giveCard(new Card("H", "K"));
+        player.giveCard(new Card("H", "A"));
+
+        Player dealer = new Player(true);
+        dealer.giveCard(new Card("C", "K"));
+        dealer.giveCard(new Card("C", "A"));
+
+        BlackJack.players = new ArrayList<>();
+        BlackJack.players.add(player);
+
+        BlackJack.dealers = new ArrayList<>();
+        BlackJack.dealers.add(dealer);
+
+        BlackJack.getWinner();
+
+        assertTrue(BlackJack.outputHistory.contains("Dealer has blackjack, dealer wins!"));
+    }
+
+    @Test
+    //Verify that winners are determined correctly
+    //If player has blackjack, they win
+    public void CheckPBJ(){
+
+        BlackJack.outputHistory = "";
+
+        Player player = new Player(false);
+        player.giveCard(new Card("H", "K"));
+        player.giveCard(new Card("H", "A"));
+
+        Player dealer = new Player(true);
+        dealer.giveCard(new Card("C", "K"));
+        dealer.giveCard(new Card("C", "Q"));
+
+        BlackJack.players = new ArrayList<>();
+        BlackJack.players.add(player);
+
+        BlackJack.dealers = new ArrayList<>();
+        BlackJack.dealers.add(dealer);
+
+        BlackJack.getWinner();
+
+        assertTrue(BlackJack.outputHistory.contains("Player has blackjack, player wins!"));
+    }
+
+    @Test
+    //Verify that winners are determined correctly
+    //If both have bust, dealer wins
+    public void CheckBB(){
+
+        BlackJack.outputHistory = "";
+
+        Player player = new Player(false);
+        player.giveCard(new Card("H", "K"));
+        player.giveCard(new Card("H", "Q"));
+        player.giveCard(new Card("H", "J"));
+
+        Player dealer = new Player(true);
+        dealer.giveCard(new Card("C", "K"));
+        dealer.giveCard(new Card("C", "Q"));
+        dealer.giveCard(new Card("C", "J"));
+
+        BlackJack.players = new ArrayList<>();
+        BlackJack.players.add(player);
+
+        BlackJack.dealers = new ArrayList<>();
+        BlackJack.dealers.add(dealer);
+
+        BlackJack.getWinner();
+
+        assertTrue(BlackJack.outputHistory.contains("Player busts, dealer wins!"));
+    }
+
+    @Test
+    //Verify that winners are determined correctly
+    //If player busts, dealer wins
+    public void CheckPB(){
+
+        BlackJack.outputHistory = "";
+
+        Player player = new Player(false);
+        player.giveCard(new Card("H", "K"));
+        player.giveCard(new Card("H", "Q"));
+        player.giveCard(new Card("H", "J"));
+
+        Player dealer = new Player(true);
+        dealer.giveCard(new Card("C", "K"));
+        dealer.giveCard(new Card("C", "Q"));
+        dealer.giveCard(new Card("C", "A"));
+
+        BlackJack.players = new ArrayList<>();
+        BlackJack.players.add(player);
+
+        BlackJack.dealers = new ArrayList<>();
+        BlackJack.dealers.add(dealer);
+
+        BlackJack.getWinner();
+
+        assertTrue(BlackJack.outputHistory.contains("Player busts, dealer wins!"));
+    }
+
+    @Test
+    //Verify that winners are determined correctly
+    //If dealer busts, player wins
+    public void CheckDB(){
+
+        BlackJack.outputHistory = "";
+
+        Player player = new Player(false);
+        player.giveCard(new Card("H", "K"));
+        player.giveCard(new Card("H", "Q"));
+        player.giveCard(new Card("H", "A"));
+
+        Player dealer = new Player(true);
+        dealer.giveCard(new Card("C", "K"));
+        dealer.giveCard(new Card("C", "Q"));
+        dealer.giveCard(new Card("C", "J"));
+
+        BlackJack.players = new ArrayList<>();
+        BlackJack.players.add(player);
+
+        BlackJack.dealers = new ArrayList<>();
+        BlackJack.dealers.add(dealer);
+
+        BlackJack.getWinner();
+
+        assertTrue(BlackJack.outputHistory.contains("Dealer busts, player wins!"));
+    }
+
+    @Test
+    //Verify that winners are determined correctly
+    //If both have the same score, it's a tie
+    public void CheckT(){
+
+        BlackJack.outputHistory = "";
+
+        Player player = new Player(false);
+        player.giveCard(new Card("H", "K"));
+        player.giveCard(new Card("H", "Q"));
+        player.giveCard(new Card("H", "A"));
+
+        Player dealer = new Player(true);
+        dealer.giveCard(new Card("C", "K"));
+        dealer.giveCard(new Card("C", "Q"));
+        dealer.giveCard(new Card("C", "A"));
+
+        BlackJack.players = new ArrayList<>();
+        BlackJack.players.add(player);
+
+        BlackJack.dealers = new ArrayList<>();
+        BlackJack.dealers.add(dealer);
+
+        BlackJack.getWinner();
+
+        assertTrue(BlackJack.outputHistory.contains("Tie game!"));
+    }
+
+    @Test
+    //Verify that winners are determined correctly
+    //If dealer has a higher score, it reports correctly
+    public void CheckDW(){
+
+        BlackJack.outputHistory = "";
+
+        Player player = new Player(false);
+        player.giveCard(new Card("H", "K"));
+        player.giveCard(new Card("H", "6"));
+
+        Player dealer = new Player(true);
+        dealer.giveCard(new Card("C", "K"));
+        dealer.giveCard(new Card("C", "Q"));
+        dealer.giveCard(new Card("C", "A"));
+
+        BlackJack.players = new ArrayList<>();
+        BlackJack.players.add(player);
+
+        BlackJack.dealers = new ArrayList<>();
+        BlackJack.dealers.add(dealer);
+
+        BlackJack.getWinner();
+
+        assertTrue(BlackJack.outputHistory.contains("Dealer wins!"));
+        assertTrue(BlackJack.outputHistory.contains("Score is 16 to 21"));
+    }
+
+    @Test
+    //Verify that winners are determined correctly
+    //If player has a higher score, it reports correctly
+    public void CheckPW(){
+
+        BlackJack.outputHistory = "";
+
+        Player player = new Player(false);
+        player.giveCard(new Card("H", "K"));
+        player.giveCard(new Card("H", "Q"));
+
+        Player dealer = new Player(true);
+        dealer.giveCard(new Card("C", "K"));
+        dealer.giveCard(new Card("C", "6"));
+
+        BlackJack.players = new ArrayList<>();
+        BlackJack.players.add(player);
+
+        BlackJack.dealers = new ArrayList<>();
+        BlackJack.dealers.add(dealer);
+
+        BlackJack.getWinner();
+
+        assertTrue(BlackJack.outputHistory.contains("Player wins!"));
+        assertTrue(BlackJack.outputHistory.contains("Score is 20 to 16"));
+    }
+
+    @Test
+    //Verify that winners are determined correctly
+    //If dealer has a higher score and has split, it reports correctly
+    public void CheckDSFW(){
+
+        BlackJack.outputHistory = "";
+
+        Player player = new Player(false);
+        player.giveCard(new Card("H", "K"));
+        player.giveCard(new Card("H", "6"));
+
+        Player dealer = new Player(true);
+        dealer.giveCard(new Card("C", "K"));
+        dealer.giveCard(new Card("C", "Q"));
+        dealer.giveCard(new Card("C", "A"));
+
+        Player dealer2 = new Player(true);
+        dealer2.giveCard(new Card("C", "K"));
+        dealer2.giveCard(new Card("C", "Q"));
+
+        BlackJack.players = new ArrayList<>();
+        BlackJack.players.add(player);
+
+        BlackJack.dealers = new ArrayList<>();
+        BlackJack.dealers.add(dealer);
+        BlackJack.dealers.add(dealer2);
+
+        BlackJack.getWinner();
+
+        assertTrue(BlackJack.outputHistory.contains("Dealer wins!"));
+        assertTrue(BlackJack.outputHistory.contains("Score is 16 to 21"));
+    }
+
+    @Test
+    //Verify that winners are determined correctly
+    //If dealer has a higher score and has split, it reports correctly
+    public void CheckDSSW(){
+
+        BlackJack.outputHistory = "";
+
+        Player player = new Player(false);
+        player.giveCard(new Card("H", "K"));
+        player.giveCard(new Card("H", "6"));
+
+        Player dealer2 = new Player(true);
+        dealer2.giveCard(new Card("C", "K"));
+        dealer2.giveCard(new Card("C", "Q"));
+        dealer2.giveCard(new Card("C", "A"));
+
+        Player dealer = new Player(true);
+        dealer.giveCard(new Card("C", "K"));
+        dealer.giveCard(new Card("C", "Q"));
+
+        BlackJack.players = new ArrayList<>();
+        BlackJack.players.add(player);
+
+        BlackJack.dealers = new ArrayList<>();
+        BlackJack.dealers.add(dealer);
+        BlackJack.dealers.add(dealer2);
+
+        BlackJack.getWinner();
+
+        assertTrue(BlackJack.outputHistory.contains("Dealer wins!"));
+        assertTrue(BlackJack.outputHistory.contains("Score is 16 to 21"));
+    }
+
+    @Test
+    //Verify that winners are determined correctly
+    //If dealer has a higher score and a bust, it reports correctly
+    public void CheckDSFBW(){
+
+        BlackJack.outputHistory = "";
+
+        Player player = new Player(false);
+        player.giveCard(new Card("H", "K"));
+        player.giveCard(new Card("H", "6"));
+
+        Player dealer = new Player(true);
+        dealer.giveCard(new Card("C", "K"));
+        dealer.giveCard(new Card("C", "Q"));
+        dealer.giveCard(new Card("C", "A"));
+
+        Player dealer2 = new Player(true);
+        dealer2.giveCard(new Card("C", "K"));
+        dealer2.giveCard(new Card("C", "Q"));
+        dealer2.giveCard(new Card("C", "J"));
+
+        BlackJack.players = new ArrayList<>();
+        BlackJack.players.add(player);
+
+        BlackJack.dealers = new ArrayList<>();
+        BlackJack.dealers.add(dealer);
+        BlackJack.dealers.add(dealer2);
+
+        BlackJack.getWinner();
+
+        assertTrue(BlackJack.outputHistory.contains("Dealer wins!"));
+        assertTrue(BlackJack.outputHistory.contains("Score is 16 to 21"));
+    }
+
+    @Test
+    //Verify that winners are determined correctly
+    //If dealer has a higher score and a bust, it reports correctly
+    public void CheckDSSBW(){
+
+        BlackJack.outputHistory = "";
+
+        Player player = new Player(false);
+        player.giveCard(new Card("H", "K"));
+        player.giveCard(new Card("H", "6"));
+
+        Player dealer2 = new Player(true);
+        dealer2.giveCard(new Card("C", "K"));
+        dealer2.giveCard(new Card("C", "Q"));
+        dealer2.giveCard(new Card("C", "A"));
+
+        Player dealer = new Player(true);
+        dealer.giveCard(new Card("C", "K"));
+        dealer.giveCard(new Card("C", "Q"));
+        dealer.giveCard(new Card("C", "J"));
+
+        BlackJack.players = new ArrayList<>();
+        BlackJack.players.add(player);
+
+        BlackJack.dealers = new ArrayList<>();
+        BlackJack.dealers.add(dealer);
+        BlackJack.dealers.add(dealer2);
+
+        BlackJack.getWinner();
+
+        assertTrue(BlackJack.outputHistory.contains("Dealer wins!"));
+        assertTrue(BlackJack.outputHistory.contains("Score is 16 to 21"));
+    }
+
+    @Test
+    //Verify that winners are determined correctly
+    //If player has a higher score and has split, it reports correctly
+    public void CheckPSFW(){
+
+        BlackJack.outputHistory = "";
+
+        Player dealer = new Player(false);
+        dealer.giveCard(new Card("H", "K"));
+        dealer.giveCard(new Card("H", "6"));
+
+        Player player = new Player(true);
+        player.giveCard(new Card("C", "K"));
+        player.giveCard(new Card("C", "Q"));
+        player.giveCard(new Card("C", "A"));
+
+        Player player2 = new Player(true);
+        player2.giveCard(new Card("C", "K"));
+        player2.giveCard(new Card("C", "Q"));
+
+        BlackJack.dealers = new ArrayList<>();
+        BlackJack.dealers.add(dealer);
+
+        BlackJack.players = new ArrayList<>();
+        BlackJack.players.add(player);
+        BlackJack.players.add(player2);
+
+        BlackJack.getWinner();
+
+        assertTrue(BlackJack.outputHistory.contains("Player wins!"));
+        assertTrue(BlackJack.outputHistory.contains("Score is 21 to 16"));
+    }
+
+    @Test
+    //Verify that winners are determined correctly
+    //If player has a higher score and has split, it reports correctly
+    public void CheckPSSW(){
+
+        BlackJack.outputHistory = "";
+
+        Player dealer = new Player(false);
+        dealer.giveCard(new Card("H", "K"));
+        dealer.giveCard(new Card("H", "6"));
+
+        Player player2 = new Player(true);
+        player2.giveCard(new Card("C", "K"));
+        player2.giveCard(new Card("C", "Q"));
+        player2.giveCard(new Card("C", "A"));
+
+        Player player = new Player(true);
+        player.giveCard(new Card("C", "K"));
+        player.giveCard(new Card("C", "Q"));
+
+        BlackJack.dealers = new ArrayList<>();
+        BlackJack.dealers.add(dealer);
+
+        BlackJack.players = new ArrayList<>();
+        BlackJack.players.add(player);
+        BlackJack.players.add(player2);
+
+        BlackJack.getWinner();
+
+        assertTrue(BlackJack.outputHistory.contains("Player wins!"));
+        assertTrue(BlackJack.outputHistory.contains("Score is 21 to 16"));
+    }
+
+    @Test
+    //Verify that winners are determined correctly
+    //If player has a higher score and a bust, it reports correctly
+    public void CheckPSFBW(){
+
+        BlackJack.outputHistory = "";
+
+        Player dealer = new Player(false);
+        dealer.giveCard(new Card("H", "K"));
+        dealer.giveCard(new Card("H", "6"));
+
+        Player player = new Player(true);
+        player.giveCard(new Card("C", "K"));
+        player.giveCard(new Card("C", "Q"));
+        player.giveCard(new Card("C", "A"));
+
+        Player player2 = new Player(true);
+        player2.giveCard(new Card("C", "K"));
+        player2.giveCard(new Card("C", "Q"));
+        player2.giveCard(new Card("C", "J"));
+
+        BlackJack.dealers = new ArrayList<>();
+        BlackJack.dealers.add(dealer);
+
+        BlackJack.players = new ArrayList<>();
+        BlackJack.players.add(player);
+        BlackJack.players.add(player2);
+
+        BlackJack.getWinner();
+
+        assertTrue(BlackJack.outputHistory.contains("Player wins!"));
+        assertTrue(BlackJack.outputHistory.contains("Score is 21 to 16"));
+    }
+
+    @Test
+    //Verify that winners are determined correctly
+    //If player has a higher score and a bust, it reports correctly
+    public void CheckPSSBW(){
+
+        BlackJack.outputHistory = "";
+
+        Player dealer = new Player(false);
+        dealer.giveCard(new Card("H", "K"));
+        dealer.giveCard(new Card("H", "6"));
+
+        Player player2 = new Player(true);
+        player2.giveCard(new Card("C", "K"));
+        player2.giveCard(new Card("C", "Q"));
+        player2.giveCard(new Card("C", "A"));
+
+        Player player = new Player(true);
+        player.giveCard(new Card("C", "K"));
+        player.giveCard(new Card("C", "Q"));
+        player.giveCard(new Card("C", "J"));
+
+        BlackJack.dealers = new ArrayList<>();
+        BlackJack.dealers.add(dealer);
+
+        BlackJack.players = new ArrayList<>();
+        BlackJack.players.add(player);
+        BlackJack.players.add(player2);
+
+        BlackJack.getWinner();
+
+        assertTrue(BlackJack.outputHistory.contains("Dealer wins!"));
+        assertTrue(BlackJack.outputHistory.contains("Score is 21 to 16"));
+    }
+
+    @Test
+    //Verify that winners are determined correctly
+    //Splits can tie
+    public void CheckST(){
+
+        BlackJack.outputHistory = "";
+
+        Player dealer = new Player(false);
+        dealer.giveCard(new Card("H", "K"));
+        dealer.giveCard(new Card("H", "6"));
+
+        Player dealer2 = new Player(false);
+        dealer2.giveCard(new Card("S", "K"));
+        dealer2.giveCard(new Card("S", "6"));
+
+        Player player = new Player(true);
+        player.giveCard(new Card("C", "K"));
+        player.giveCard(new Card("C", "6"));
+
+        Player player2 = new Player(true);
+        player2.giveCard(new Card("D", "K"));
+        player2.giveCard(new Card("D", "6"));
+
+        BlackJack.dealers = new ArrayList<>();
+        BlackJack.dealers.add(dealer);
+        BlackJack.dealers.add(dealer2);
+
+        BlackJack.players = new ArrayList<>();
+        BlackJack.players.add(player);
+        BlackJack.players.add(player2);
+
+        BlackJack.getWinner();
+
+        assertTrue(BlackJack.outputHistory.contains("Tie game!"));
+    }
+
+    @Test
+    //Verify that winners are determined correctly
+    //Splits can blackjack
+    public void CheckDSBJ(){
+
+        BlackJack.outputHistory = "";
+
+        Player dealer = new Player(false);
+        dealer.giveCard(new Card("H", "K"));
+        dealer.giveCard(new Card("H", "6"));
+
+        Player dealer2 = new Player(false);
+        dealer2.giveCard(new Card("S", "K"));
+        dealer2.giveCard(new Card("S", "6"));
+
+        Player player = new Player(true);
+        player.giveCard(new Card("C", "K"));
+        player.giveCard(new Card("C", "6"));
+
+        Player player2 = new Player(true);
+        player2.giveCard(new Card("D", "K"));
+        player2.giveCard(new Card("D", "A"));
+
+        BlackJack.dealers = new ArrayList<>();
+        BlackJack.dealers.add(dealer);
+        BlackJack.dealers.add(dealer2);
+
+        BlackJack.players = new ArrayList<>();
+        BlackJack.players.add(player);
+        BlackJack.players.add(player2);
+
+        BlackJack.getWinner();
+
+        assertTrue(BlackJack.outputHistory.contains("Dealer has blackjack, dealer wins!"));
+    }
+
+    @Test
+    //Verify that winners are determined correctly
+    //Splits can blackjack
+    public void CheckPSBJ(){
+
+        BlackJack.outputHistory = "";
+
+        Player dealer = new Player(false);
+        dealer.giveCard(new Card("H", "K"));
+        dealer.giveCard(new Card("H", "6"));
+
+        Player dealer2 = new Player(false);
+        dealer2.giveCard(new Card("S", "K"));
+        dealer2.giveCard(new Card("S", "A"));
+
+        Player player = new Player(true);
+        player.giveCard(new Card("C", "K"));
+        player.giveCard(new Card("C", "6"));
+
+        Player player2 = new Player(true);
+        player2.giveCard(new Card("D", "K"));
+        player2.giveCard(new Card("D", "6"));
+
+        BlackJack.dealers = new ArrayList<>();
+        BlackJack.dealers.add(dealer);
+        BlackJack.dealers.add(dealer2);
+
+        BlackJack.players = new ArrayList<>();
+        BlackJack.players.add(player);
+        BlackJack.players.add(player2);
+
+        BlackJack.getWinner();
+
+        assertTrue(BlackJack.outputHistory.contains("Player has blackjack, player wins!"));
     }
 }

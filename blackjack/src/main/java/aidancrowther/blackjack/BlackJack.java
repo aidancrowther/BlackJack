@@ -209,7 +209,7 @@ public class BlackJack{
         dealers.get(0).giveCard(new Card(s[3].split("")[0], s[3].substring(1)));
     }
 
-    protected static void fileGame(){
+    protected static void fileGame(Boolean play){
 
         //Setup variables for the file
         String fileContents = "";
@@ -257,6 +257,9 @@ public class BlackJack{
 
         //Setup the game with predefined hands
         setupGame(hands);
+
+        //Run the game
+        //if(play) cmdGame();
         
     }
 
