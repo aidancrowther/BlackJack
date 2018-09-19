@@ -29,6 +29,10 @@ public class BlackJack{
     //User input scanner
     protected static Scanner scanner = new Scanner(System.in);
 
+    public static void main(String args[]){
+        fileGame();
+    }
+
     protected static void init(){
 
         Boolean waiting = true;
@@ -202,6 +206,54 @@ public class BlackJack{
         players.get(0).giveCard(new Card(s[1].split("")[0], s[1].substring(1)));
         dealers.get(0).giveCard(new Card(s[2].split("")[0], s[2].substring(1)));
         dealers.get(0).giveCard(new Card(s[3].split("")[0], s[3].substring(1)));
+    }
+
+    protected static void fileGame(){
+
+        //Setup variables for the file
+        String fileContents = "";
+        Boolean getFile = true;
+        Boolean validFile = false;
+        command = 0;
+
+        //Request a filename
+        System.out.print("Please choose a file: ");
+        
+        //Loop until we get a valid file
+        while(!validFile){
+            while(getFile){
+                //Attempt to open the given file and read it to a string
+                try{
+                    fileContents = new String(Files.readAllBytes(Paths.get(scanner.nextLine())));
+                }
+                //Catch errors, and report invlid filename
+                catch(IOException e){
+                    output("File not found, please input a valid file: ");
+                }
+
+                getFile = fileContents.equals("");
+
+            }
+
+            //Generate an arraylist of commands using the file
+            commandSequence = new ArrayList<String>(Arrays.asList(fileContents.split(" ")));
+
+            //Verify the file input is valid
+            validFile = true;
+            for(String elem : commandSequence){
+                validFile &= elem.split("")[0].matches("[SCHD]");
+                if(!elem.substring(1).equals("")) validFile &= elem.substring(1).matches("10|[AJQK0-9]");
+            }
+
+            if(!validFile){
+                output("File uses illegal characters, please use a valid file: ");
+                getFile = true;
+            }
+        }
+
+        //Determine the starting hands
+        String hands[] = {commandSequence.get(command++), commandSequence.get(command++), commandSequence.get(command++), commandSequence.get(command++)};
+        
     }
 
 }
