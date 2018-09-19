@@ -292,4 +292,54 @@ public class BlackJackTest{
         assertTrue(BlackJack.players.get(0).getHandSize() == 2);
         assertTrue(BlackJack.dealers.get(0).getHandSize() == 2);
     }
+
+    @Test
+    //Verify that file input functions correctly
+    public void CheckFileInput(){
+
+        BlackJack.scanner = new Scanner("Files/file1.txt");
+        BlackJack.commandSequence = new ArrayList<>();
+
+        BlackJack.fileGame();
+
+        assertTrue(BlackJack.commandSequence.size() == 4);
+        assertTrue(BlackJack.commandSequence.get(0).equals("SK"));
+        assertTrue(BlackJack.commandSequence.get(0).equals("HA"));
+        assertTrue(BlackJack.commandSequence.get(0).equals("HQ"));
+        assertTrue(BlackJack.commandSequence.get(0).equals("CA"));
+    }
+
+    @Test
+    //Verify that invalid file input is rejected
+    public void CheckInvalidFileInput(){
+
+        BlackJack.scanner = new Scanner("Files/fil1.txt\nFiles/file1.txt");
+        BlackJack.commandSequence = new ArrayList<>();
+
+        BlackJack.fileGame();
+
+        assertTrue(BlackJack.commandSequence.size() == 4);
+        assertTrue(BlackJack.commandSequence.get(0).equals("SK"));
+        assertTrue(BlackJack.commandSequence.get(0).equals("HA"));
+        assertTrue(BlackJack.commandSequence.get(0).equals("HQ"));
+        assertTrue(BlackJack.commandSequence.get(0).equals("CA"));
+        assertTrue(BlackJack.outputHistory.contains("File not found, please input a valid file: "));
+    }
+
+    @Test
+    //Verify that invalid file input is rejected
+    public void CheckInvalidFileRejected(){
+
+        BlackJack.scanner = new Scanner("Files/file0.txt\nFiles/file1.txt");
+        BlackJack.commandSequence = new ArrayList<>();
+
+        BlackJack.fileGame();
+
+        assertTrue(BlackJack.commandSequence.size() == 4);
+        assertTrue(BlackJack.commandSequence.get(0).equals("SK"));
+        assertTrue(BlackJack.commandSequence.get(0).equals("HA"));
+        assertTrue(BlackJack.commandSequence.get(0).equals("HQ"));
+        assertTrue(BlackJack.commandSequence.get(0).equals("CA"));
+        assertTrue(BlackJack.outputHistory.contains("File uses illegal characters, please use a valid file: "));
+    }
 }
