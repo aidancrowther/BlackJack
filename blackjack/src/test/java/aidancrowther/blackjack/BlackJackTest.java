@@ -384,7 +384,7 @@ public class BlackJackTest{
         assertTrue(BlackJack.dealers.get(0).isDealer());
         assertTrue(BlackJack.playingTurn);
 
-        assertTrue(BlackJack.players.get(0).toString().equals("HK HA"));
-        assertTrue(BlackJack.dealers.get(0).toString(true).equals("HQ HJ"));
+        assertTrue(BlackJack.players.get(0).toString().contains("HK HA"));
+        assertTrue(BlackJack.dealers.get(0).toString(true).contains("HQ HJ"));
     }
 }

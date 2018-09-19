@@ -16,6 +16,7 @@ public class BlackJack{
     protected static String outputHistory = "";
     protected static Boolean dealSplit = false;
     protected static Boolean running = true;
+    protected static Boolean playingTurn = true;
 
     //Local game objects
     protected static Deck deck;
@@ -253,7 +254,39 @@ public class BlackJack{
 
         //Determine the starting hands
         String hands[] = {commandSequence.get(command++), commandSequence.get(command++), commandSequence.get(command++), commandSequence.get(command++)};
+
+        //Setup the game with predefined hands
+        setupGame(hands);
         
+    }
+
+    protected static void setupGame(){
+
+        playingTurn = true;
+        dealSplit = false;
+
+        players.clear();
+        dealers.clear();
+        players.add(new Player(false));
+        dealers.add(new Player(true));
+
+        deck = new Deck();
+        deck.shuffle();
+
+        dealHands();
+    }
+
+    protected static void setupGame(String[] s){
+
+        playingTurn = true;
+        dealSplit = false;
+
+        players.clear();
+        dealers.clear();
+        players.add(new Player(false));
+        dealers.add(new Player(true));
+
+        dealHands(s);
     }
 
 }
