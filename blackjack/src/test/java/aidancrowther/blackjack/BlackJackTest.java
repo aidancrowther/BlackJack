@@ -344,4 +344,47 @@ public class BlackJackTest{
         assertTrue(BlackJack.commandSequence.get(3).equals("CA"));
         assertTrue(BlackJack.outputHistory.contains("File uses illegal characters, please use a valid file: "));
     }
+
+    @Test
+    //Verify that game setup functions correctly without predefined hands
+    public void CheckSetupGame(){
+
+        BlackJack.playingTurn = false;
+        BlackJack.players.add(new Player(false));
+        BlackJack.players.add(new Player(false));
+        BlackJack.dealers.add(new Player(true));
+        BlackJack.dealers.add(new Player(true));
+
+        BlackJack.setupGame();
+
+        assertTrue(BlackJack.players.size() == 1);
+        assertTrue(BlackJack.dealers.size() == 1);
+        assertFalse(BlackJack.players.get(0).isDealer());
+        assertTrue(BlackJack.dealers.get(0).isDealer());
+        assertTrue(BlackJack.playingTurn);
+    }
+
+    @Test
+    //Verify that game setup functions correctly with predefined hands
+    public void CheckSetupFileGame(){
+
+        BlackJack.playingTurn = false;
+        BlackJack.players.add(new Player(false));
+        BlackJack.players.add(new Player(false));
+        BlackJack.dealers.add(new Player(true));
+        BlackJack.dealers.add(new Player(true));
+
+        String hands[] = {"HK", "HA", "HQ", "HJ"};
+
+        BlackJack.setupGame(hands);
+
+        assertTrue(BlackJack.players.size() == 1);
+        assertTrue(BlackJack.dealers.size() == 1);
+        assertFalse(BlackJack.players.get(0).isDealer());
+        assertTrue(BlackJack.dealers.get(0).isDealer());
+        assertTrue(BlackJack.playingTurn);
+
+        assertTrue(BlackJack.players.get(0).toString().equals("HK HA"));
+        assertTrue(BlackJack.dealers.get(0).toString(true).equals("HQ HJ"));
+    }
 }
