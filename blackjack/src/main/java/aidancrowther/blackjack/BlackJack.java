@@ -31,7 +31,37 @@ public class BlackJack{
     protected static Scanner scanner = new Scanner(System.in);
 
     public static void main(String args[]){
-        fileGame(true);
+
+        //Intialize the game
+        init();
+
+        //Run game loop based on user input selection
+        gameLoop();
+        
+    }
+
+    //Main game loop
+    protected static void gameLoop(){
+
+        //Until the game is done being played, continue looping
+        while(running){
+            switch(inputMethod){
+                case(0):
+                    //cmdGame();
+                break;
+
+                case(1):
+                    fileGame(true);
+                break;
+
+                case(2):
+                    //guiLoop();
+                break;
+            }
+
+            //Determine whether or not to continue playing
+            replay();
+        }
     }
 
     protected static void init(){
@@ -243,7 +273,7 @@ public class BlackJack{
             validFile = true;
             for(String elem : commandSequence){
                 validFile &= elem.split("")[0].matches("[SCHD]");
-                if(!elem.substring(1).equals("")) validFile &= elem.substring(1).matches("10|[AJQK0-9]");
+                if(!elem.substring(1).equals("")) validFile &= elem.substring(1).matches("10|[AJQK2-9]");
             }
 
             if(!validFile){

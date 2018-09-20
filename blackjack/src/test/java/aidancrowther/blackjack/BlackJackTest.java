@@ -982,4 +982,151 @@ public class BlackJackTest{
 
         assertTrue(BlackJack.outputHistory.contains("Dealer has blackjack, dealer wins!"));
     }
+
+    @Test
+    //Verify that a dealers initial blackjack is detected
+    public void CheckInitialBJD(){
+
+        BlackJack.outputHistory = "";
+        BlackJack.scanner = new Scanner("f\nFiles/file1.txt\nn");
+        BlackJack.running = true;
+
+        BlackJack.main(new String[0]);
+
+        assertTrue(BlackJack.outputHistory.contains("Dealer has blackjack, dealer wins!"));
+    }
+
+    @Test
+    //Verify that a players initial blackjack is detected
+    public void CheckInitialBJP(){
+
+        BlackJack.outputHistory = "";
+        BlackJack.scanner = new Scanner("f\nFiles/file6.txt\nn");
+        BlackJack.running = true;
+
+        BlackJack.main(new String[0]);
+
+        assertTrue(BlackJack.outputHistory.contains("Player has blackjack, player wins!"));
+    }
+
+    @Test
+    //Verify gameplay
+    //Test using file1.txt
+    //  - Ensure that dealer blackjack has priority
+    //  - Ensure that blackjacks are detected before playing
+    public void CheckGameplayF1(){
+
+        BlackJack.outputHistory = "";
+        BlackJack.scanner = new Scanner("f\nFiles/file1.txt\nn");
+        BlackJack.running = true;
+
+        BlackJack.main(new String[0]);
+
+        assertTrue(BlackJack.outputHistory.contains("Dealer has blackjack, dealer wins!"));
+    }
+
+    @Test
+    //Verify gameplay
+    //Test using file2.txt
+    //  - Ensure that dealers whole hand shows at the end of their turn
+    //  - Ensure that we can handle a dealer busting
+    public void CheckGameplayF2(){
+
+        BlackJack.outputHistory = "";
+        BlackJack.scanner = new Scanner("f\nFiles/file2.txt\nn");
+        BlackJack.running = true;
+
+        BlackJack.main(new String[0]);
+
+        assertTrue(BlackJack.outputHistory.contains("Hand 1: SQ C5 DJ"));
+        assertTrue(BlackJack.outputHistory.contains("Dealer busts, player wins!"));
+    }
+
+    @Test
+    //Verify gameplay
+    //Test using file3.txt
+    //  - Ensure that scores are correctly displayed
+    //  - Ensure that win goes to the highest score
+    public void CheckGameplayF3(){
+
+        BlackJack.outputHistory = "";
+        BlackJack.scanner = new Scanner("f\nFiles/file3.txt\nn");
+        BlackJack.running = true;
+
+        BlackJack.main(new String[0]);
+
+        assertTrue(BlackJack.outputHistory.contains("Score is 19 to 18"));
+        assertTrue(BlackJack.outputHistory.contains("Player wins!"));
+    }
+
+    @Test
+    //Verify gameplay
+    //Test using file4.txt
+    //  - Ensure that splitting functions for players
+    //  - Ensure that the highest score is chosen and displayed
+    //  - Ensure that winners are correctly determined when splitting
+    public void CheckGameplayF4(){
+
+        BlackJack.outputHistory = "";
+        BlackJack.scanner = new Scanner("f\nFiles/file4.txt\nn");
+        BlackJack.running = true;
+
+        BlackJack.main(new String[0]);
+
+        assertTrue(BlackJack.outputHistory.contains("Hand 1: SK H6 D3"));
+        assertTrue(BlackJack.outputHistory.contains("Hand 2: HK C5 D5"));
+        assertTrue(BlackJack.outputHistory.contains("Score is 20 to 19"));
+        assertTrue(BlackJack.outputHistory.contains("Player wins!"));
+    }
+
+    @Test
+    //Verify gameplay
+    //Test using file5.txt
+    //  - Ensure that dealer can split
+    //  - Ensure that a bust is not reported if another hand hasn't busted
+    public void CheckGameplayF5(){
+
+        BlackJack.outputHistory = "";
+        BlackJack.scanner = new Scanner("f\nFiles/file5.txt\nn");
+        BlackJack.running = true;
+
+        BlackJack.main(new String[0]);
+
+        assertTrue(BlackJack.outputHistory.contains("Hand 1: C5 H7 CQ"));
+        assertTrue(BlackJack.outputHistory.contains("Hand 2: D5 SA SQ D2"));
+        assertTrue(BlackJack.outputHistory.contains("Score is 19 to 18"));
+        assertTrue(BlackJack.outputHistory.contains("Player wins!"));
+    }
+
+    @Test
+    //Verify gameplay
+    //Test using file6.txt
+    //  - Ensure that player blackjack is correctly identified
+    public void CheckGameplayF6(){
+
+        BlackJack.outputHistory = "";
+        BlackJack.scanner = new Scanner("f\nFiles/file6.txt\nn");
+        BlackJack.running = true;
+
+        BlackJack.main(new String[0]);
+
+        assertTrue(BlackJack.outputHistory.contains("Player has blackjack, player wins!"));
+    }
+
+    @Test
+    //Verify gameplay
+    //Test using file7.txt
+    //  - Ensure that dealer correctly handles a soft 17
+    public void CheckGameplayF7(){
+
+        BlackJack.outputHistory = "";
+        BlackJack.scanner = new Scanner("f\nFiles/file7.txt\nn");
+        BlackJack.running = true;
+
+        BlackJack.main(new String[0]);
+
+        assertTrue(BlackJack.outputHistory.contains("Hand 1: H2 H4 HA H2"));
+        assertTrue(BlackJack.outputHistory.contains("Score is 20 to 19"));
+        assertTrue(BlackJack.outputHistory.contains("Player wins!"));
+    }
 }
