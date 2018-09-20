@@ -342,7 +342,25 @@ public class BlackJackTest{
         assertTrue(BlackJack.commandSequence.get(1).equals("HA"));
         assertTrue(BlackJack.commandSequence.get(2).equals("HQ"));
         assertTrue(BlackJack.commandSequence.get(3).equals("CA"));
-        assertTrue(BlackJack.outputHistory.contains("File uses illegal characters, please use a valid file: "));
+        assertTrue(BlackJack.outputHistory.contains("File uses illegal characters/duplicates, please use a valid file: "));
+    }
+
+    @Test
+    //Verify that invalid file input is rejected
+    public void CheckDuplicateFileRejected(){
+
+        BlackJack.scanner = new Scanner("Files/fileDup.txt\nFiles/file1.txt");
+        BlackJack.commandSequence = new ArrayList<>();
+        BlackJack.outputHistory = "";
+
+        BlackJack.fileGame(false);
+
+        assertTrue(BlackJack.commandSequence.size() == 4);
+        assertTrue(BlackJack.commandSequence.get(0).equals("SK"));
+        assertTrue(BlackJack.commandSequence.get(1).equals("HA"));
+        assertTrue(BlackJack.commandSequence.get(2).equals("HQ"));
+        assertTrue(BlackJack.commandSequence.get(3).equals("CA"));
+        assertTrue(BlackJack.outputHistory.contains("File uses illegal characters/duplicates, please use a valid file: "));
     }
 
     @Test
@@ -1125,7 +1143,7 @@ public class BlackJackTest{
 
         BlackJack.main(new String[0]);
 
-        assertTrue(BlackJack.outputHistory.contains("Hand 1: H2 H4 HA H2"));
+        assertTrue(BlackJack.outputHistory.contains("Hand 1: H2 H4 HA C2"));
         assertTrue(BlackJack.outputHistory.contains("Score is 20 to 19"));
         assertTrue(BlackJack.outputHistory.contains("Player wins!"));
     }

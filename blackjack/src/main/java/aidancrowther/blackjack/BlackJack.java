@@ -26,6 +26,7 @@ public class BlackJack{
     //Command sequence list for use in filegame
     protected static ArrayList<String> commandSequence;
     protected static int command = 0;
+    protected static Set<String> seenCards = new HashSet<>();
 
     //User input scanner
     protected static Scanner scanner = new Scanner(System.in);
@@ -47,15 +48,11 @@ public class BlackJack{
         while(running){
             switch(inputMethod){
                 case(0):
-                    //cmdGame();
+                    cmdGame();
                 break;
 
                 case(1):
                     fileGame(true);
-                break;
-
-                case(2):
-                    //guiLoop();
                 break;
             }
 
@@ -69,7 +66,7 @@ public class BlackJack{
         Boolean waiting = true;
         
         while(waiting){
-            output("Please select control method:\n\nC) Command Line\nF) File input\nG) GUI");
+            output("Please select control method:\n\nC) Command Line\nF) File input");
             pad();
 
             switch(scanner.nextLine().toLowerCase()){
@@ -276,8 +273,14 @@ public class BlackJack{
                 if(!elem.substring(1).equals("")) validFile &= elem.substring(1).matches("10|[AJQK2-9]");
             }
 
+            seenCards = new HashSet<>();
+
+            for(String elem : commandSequence){
+                if(!elem.substring(1).equals("")) if(!seenCards.add(elem)) validFile = false;
+            }
+
             if(!validFile){
-                output("File uses illegal characters, please use a valid file: ");
+                output("File uses illegal characters/duplicates, please use a valid file: ");
                 getFile = true;
             }
         }
@@ -289,7 +292,152 @@ public class BlackJack{
         setupGame(hands);
 
         //Run the game
-        //if(play) cmdGame();
+        if(play) cmdGame();
+        
+    }
+
+    //Command line game sequence
+    private static void cmdGame(){
+
+        Boolean BJSeen = false;
+
+        //If we are not playing a file input game, run the general setup method
+        if(inputMethod != 1) setupGame();
+
+        //Initialize values for gameplay and check for opening blackjack
+        playingTurn = !(players.get(0).hasBJ() || dealers.get(0).hasBJ()) && !BJSeen;
+        int numPlayers = players.size();
+        int numDealers = dealers.size();
+
+        //If there were no opening blackjacks
+        if(playingTurn){
+
+            //SHow the hands from the players POV
+            showHands(false);
+
+            //Play through each of the players hands
+            for(int i=0; i<numPlayers; i++){
+
+                //Check if we received a blackjack after a split
+                playingTurn = !(players.get(i).hasBJ()) && !BJSeen;
+                if(!playingTurn) break;
+
+                //If we have split previously, deal a new card to the new hand
+                if(dealSplit){
+                    if(inputMethod != 1) players.get(i).giveCard(deck.pop());
+                    else players.get(i).giveCard(new Card(commandSequence.get(command).split("")[0], commandSequence.get(command++).substring(1)));
+                    dealSplit = false;
+                }
+
+                //Continue running through the players hand until they are done
+                while(playingTurn){
+
+                    //Make sure to break out of the loop if we got dealt a blackjack on a split
+                    playingTurn = !(players.get(i).hasBJ()) && !BJSeen;
+                    if(!playingTurn) break;
+
+                    //Run different methods based on user input method selected
+                    //Overall, report the players current hand and score
+                    //Then collect input and process it, whether from the console or the list of commands in the file
+                    if(inputMethod != 1){
+                        output("Player has " + players.get(i).toString() + "for "+ players.get(i).getHandValue() + ".\n\nH) Hit\nS) Stand\nD) Split");
+                        pad();
+                        playingTurn = processSelection(scanner.nextLine(), players.get(i)) && players.get(i).getHandValue() <= 21;
+                    }
+                    else{
+                        output("Player has " + players.get(i).toString() + "for "+ players.get(i).getHandValue() + ".");
+                        pad();
+                        playingTurn = processSelection(commandSequence.get(command++).toLowerCase(), players.get(i)) && players.get(i).getHandValue() <= 21;
+                    }
+                }
+
+                //Ensure there are no new blackjacks
+                for(Player player : players) if(!BJSeen) BJSeen = player.hasBJ();
+
+                //Upon finishing the hand, show the current state from the users perspective
+                if(!BJSeen){
+                    showHands(false);
+                    output("\n\n");
+                }
+
+                //Ensure that we loop if the player has split
+                numPlayers = players.size();
+                playingTurn |= players.size()-i > 1;
+            }
+        }
+
+        //Stop play if there have been any blackjacks
+        playingTurn = true && !BJSeen;
+
+        //Make sure no blackjacks occurred after a split
+        for(Player player : players) playingTurn &= !player.hasBJ();
+
+        //Ensure that the player hasn't busted all their hands
+        Boolean playerBusted = true;
+        for(Player player : players){
+            playerBusted &= player.getHandValue() > 21;
+        }
+
+        //If they have, end the game there
+        playingTurn = !playerBusted && playingTurn;
+
+        //Begin the dealers turn
+        if(playingTurn){
+
+            //Run for each of the dealers hands
+            for(int i=0; i<numDealers; i++){
+
+                //Check if we received a blackjack after a split
+                playingTurn &= !BJSeen;
+                if(!playingTurn) break;
+
+                //If we have split previously, deal a new card to the new hand
+                if(dealSplit){
+                    if(inputMethod != 1) dealers.get(i).giveCard(deck.pop());
+                    else dealers.get(i).giveCard(new Card(commandSequence.get(command).split("")[0], commandSequence.get(command++).substring(1)));
+                    dealSplit = false;
+                }
+
+                //Continue each hand to completion
+                while(playingTurn){
+
+                    //Declare the current visible portion of the dealers hand
+                    output("Dealer has " + dealers.get(i).toString() + "showing.");
+                    //Split if the dealer can split
+                    if(dealers.get(i).canSplit()){
+                        playingTurn = processSelection("d", dealers.get(i));
+                    }
+                    //Otherwise hit so long as the score threshold has not been exceeded
+                    else if(dealers.get(i).getHandValue() < 17 || dealers.get(i).getSoft()){
+                        playingTurn = processSelection("h", dealers.get(i)) && dealers.get(i).getHandValue() <= 21;
+                    }
+                    //Otherwise stand
+                    else{
+                        playingTurn = processSelection("s", dealers.get(i));
+                    }
+
+                    //Ensure that we update the hands should the dealer split
+                    numDealers = dealers.size();
+                }
+
+                //Ensure there have been no new blackjacks
+                if(!BJSeen) BJSeen = dealers.get(i).hasBJ();
+
+                //Upon finishing the hand, show the current state from the users perspective
+                if(!BJSeen){
+                    showHands(false);
+                    output("\n\n");
+                }
+
+                playingTurn |= dealers.size()-i > 1;
+            }
+        }
+
+        //Show both players hands at the end
+        showHands(true);
+
+        //determine the winner
+        getWinner();
         
     }
 
