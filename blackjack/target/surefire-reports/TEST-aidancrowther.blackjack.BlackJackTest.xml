@@ -16,7 +16,7 @@
     <property name="user.country" value="US"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="/usr/lib/jvm/java-8-openjdk/jre/lib/amd64"/>
-    <property name="sun.java.command" value="/home/aidancrowther/Documents/Projects/BlackJack/Release/temp/BlackJack/blackjack/target/surefire/surefirebooter2303674451730997587.jar /home/aidancrowther/Documents/Projects/BlackJack/Release/temp/BlackJack/blackjack/target/surefire 2018-09-20T00-03-32_894-jvmRun1 surefire2082678714581584991tmp surefire_0746426816170836056tmp"/>
+    <property name="sun.java.command" value="/home/aidancrowther/Documents/Projects/BlackJack/Release/temp/BlackJack/blackjack/target/surefire/surefirebooter4272595962142097286.jar /home/aidancrowther/Documents/Projects/BlackJack/Release/temp/BlackJack/blackjack/target/surefire 2018-09-20T00-06-16_223-jvmRun1 surefire4484442911748928970tmp surefire_04591029744595576384tmp"/>
     <property name="surefire.test.class.path" value="/home/aidancrowther/Documents/Projects/BlackJack/Release/temp/BlackJack/blackjack/target/test-classes:/home/aidancrowther/Documents/Projects/BlackJack/Release/temp/BlackJack/blackjack/target/classes:/home/aidancrowther/.m2/repository/junit/junit/4.11/junit-4.11.jar:/home/aidancrowther/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="/home/aidancrowther"/>
@@ -29,7 +29,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"/>
-    <property name="surefire.real.class.path" value="/home/aidancrowther/Documents/Projects/BlackJack/Release/temp/BlackJack/blackjack/target/surefire/surefirebooter2303674451730997587.jar"/>
+    <property name="surefire.real.class.path" value="/home/aidancrowther/Documents/Projects/BlackJack/Release/temp/BlackJack/blackjack/target/surefire/surefirebooter4272595962142097286.jar"/>
     <property name="sun.boot.class.path" value="/usr/lib/jvm/java-8-openjdk/jre/lib/resources.jar:/usr/lib/jvm/java-8-openjdk/jre/lib/rt.jar:/usr/lib/jvm/java-8-openjdk/jre/lib/sunrsasign.jar:/usr/lib/jvm/java-8-openjdk/jre/lib/jsse.jar:/usr/lib/jvm/java-8-openjdk/jre/lib/jce.jar:/usr/lib/jvm/java-8-openjdk/jre/lib/charsets.jar:/usr/lib/jvm/java-8-openjdk/jre/lib/jfr.jar:/usr/lib/jvm/java-8-openjdk/jre/classes"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="1.8.0_181-b13"/>
@@ -57,55 +57,55 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="52.0"/>
   </properties>
-  <testcase name="CheckBlockInvalidSplit" classname="aidancrowther.blackjack.BlackJackTest" time="0"/>
-  <testcase name="CheckSetupFileGame" classname="aidancrowther.blackjack.BlackJackTest" time="0"/>
-  <testcase name="CheckSetupGame" classname="aidancrowther.blackjack.BlackJackTest" time="0.001"/>
+  <testcase name="CheckBlockInvalidSplit" classname="aidancrowther.blackjack.BlackJackTest" time="0.002"/>
+  <testcase name="CheckSetupFileGame" classname="aidancrowther.blackjack.BlackJackTest" time="0.001"/>
+  <testcase name="CheckSetupGame" classname="aidancrowther.blackjack.BlackJackTest" time="0"/>
   <testcase name="CheckDSBJ" classname="aidancrowther.blackjack.BlackJackTest" time="0.001"/>
-  <testcase name="CheckDSFW" classname="aidancrowther.blackjack.BlackJackTest" time="0.001"/>
-  <testcase name="CheckDSSW" classname="aidancrowther.blackjack.BlackJackTest" time="0.001"/>
+  <testcase name="CheckDSFW" classname="aidancrowther.blackjack.BlackJackTest" time="0"/>
+  <testcase name="CheckDSSW" classname="aidancrowther.blackjack.BlackJackTest" time="0"/>
   <testcase name="CheckPSBJ" classname="aidancrowther.blackjack.BlackJackTest" time="0.001"/>
   <testcase name="CheckPSFW" classname="aidancrowther.blackjack.BlackJackTest" time="0"/>
   <testcase name="CheckPSSW" classname="aidancrowther.blackjack.BlackJackTest" time="0.001"/>
   <testcase name="CheckBB" classname="aidancrowther.blackjack.BlackJackTest" time="0"/>
-  <testcase name="CheckDB" classname="aidancrowther.blackjack.BlackJackTest" time="0"/>
-  <testcase name="CheckDW" classname="aidancrowther.blackjack.BlackJackTest" time="0.001"/>
+  <testcase name="CheckDB" classname="aidancrowther.blackjack.BlackJackTest" time="0.001"/>
+  <testcase name="CheckDW" classname="aidancrowther.blackjack.BlackJackTest" time="0"/>
   <testcase name="CheckPB" classname="aidancrowther.blackjack.BlackJackTest" time="0"/>
-  <testcase name="CheckPW" classname="aidancrowther.blackjack.BlackJackTest" time="0.001"/>
-  <testcase name="CheckST" classname="aidancrowther.blackjack.BlackJackTest" time="0"/>
-  <testcase name="CheckInvalidFileInput" classname="aidancrowther.blackjack.BlackJackTest" time="0.012"/>
-  <testcase name="CheckYesReplay" classname="aidancrowther.blackjack.BlackJackTest" time="0.001"/>
+  <testcase name="CheckPW" classname="aidancrowther.blackjack.BlackJackTest" time="0"/>
+  <testcase name="CheckST" classname="aidancrowther.blackjack.BlackJackTest" time="0.001"/>
+  <testcase name="CheckInvalidFileInput" classname="aidancrowther.blackjack.BlackJackTest" time="0.013"/>
+  <testcase name="CheckYesReplay" classname="aidancrowther.blackjack.BlackJackTest" time="0"/>
   <testcase name="CheckPlayerStand" classname="aidancrowther.blackjack.BlackJackTest" time="0"/>
-  <testcase name="CheckInputChoices" classname="aidancrowther.blackjack.BlackJackTest" time="0.001"/>
-  <testcase name="CheckCommandInput" classname="aidancrowther.blackjack.BlackJackTest" time="0"/>
-  <testcase name="CheckPlayerHit" classname="aidancrowther.blackjack.BlackJackTest" time="0.001"/>
-  <testcase name="CheckBJSplit" classname="aidancrowther.blackjack.BlackJackTest" time="0"/>
-  <testcase name="CheckFileInput" classname="aidancrowther.blackjack.BlackJackTest" time="0.001"/>
+  <testcase name="CheckInputChoices" classname="aidancrowther.blackjack.BlackJackTest" time="0"/>
+  <testcase name="CheckCommandInput" classname="aidancrowther.blackjack.BlackJackTest" time="0.001"/>
+  <testcase name="CheckPlayerHit" classname="aidancrowther.blackjack.BlackJackTest" time="0"/>
+  <testcase name="CheckBJSplit" classname="aidancrowther.blackjack.BlackJackTest" time="0.001"/>
+  <testcase name="CheckFileInput" classname="aidancrowther.blackjack.BlackJackTest" time="0"/>
   <testcase name="CheckNoReplay" classname="aidancrowther.blackjack.BlackJackTest" time="0"/>
-  <testcase name="CheckAllowValidSplit" classname="aidancrowther.blackjack.BlackJackTest" time="0.001"/>
+  <testcase name="CheckAllowValidSplit" classname="aidancrowther.blackjack.BlackJackTest" time="0"/>
   <testcase name="CheckInvalidFileRejected" classname="aidancrowther.blackjack.BlackJackTest" time="0.002"/>
-  <testcase name="CheckPlayerInputInvalid" classname="aidancrowther.blackjack.BlackJackTest" time="0.001"/>
+  <testcase name="CheckPlayerInputInvalid" classname="aidancrowther.blackjack.BlackJackTest" time="0"/>
   <testcase name="CheckDisplayEnding" classname="aidancrowther.blackjack.BlackJackTest" time="0"/>
-  <testcase name="CheckDuplicateFileRejected" classname="aidancrowther.blackjack.BlackJackTest" time="0.001"/>
+  <testcase name="CheckDuplicateFileRejected" classname="aidancrowther.blackjack.BlackJackTest" time="0.002"/>
   <testcase name="CheckInitialBJD" classname="aidancrowther.blackjack.BlackJackTest" time="0.002"/>
   <testcase name="CheckInitialBJP" classname="aidancrowther.blackjack.BlackJackTest" time="0.001"/>
   <testcase name="CheckInvalidReplay" classname="aidancrowther.blackjack.BlackJackTest" time="0.001"/>
   <testcase name="CheckFileValidInput" classname="aidancrowther.blackjack.BlackJackTest" time="0"/>
   <testcase name="CheckDisplayPlaying" classname="aidancrowther.blackjack.BlackJackTest" time="0.001"/>
   <testcase name="CheckDSFBW" classname="aidancrowther.blackjack.BlackJackTest" time="0"/>
-  <testcase name="CheckDSSBW" classname="aidancrowther.blackjack.BlackJackTest" time="0"/>
-  <testcase name="CheckPSFBW" classname="aidancrowther.blackjack.BlackJackTest" time="0.001"/>
+  <testcase name="CheckDSSBW" classname="aidancrowther.blackjack.BlackJackTest" time="0.001"/>
+  <testcase name="CheckPSFBW" classname="aidancrowther.blackjack.BlackJackTest" time="0"/>
   <testcase name="CheckPSSBW" classname="aidancrowther.blackjack.BlackJackTest" time="0"/>
-  <testcase name="CheckBBJ" classname="aidancrowther.blackjack.BlackJackTest" time="0.001"/>
-  <testcase name="CheckPBJ" classname="aidancrowther.blackjack.BlackJackTest" time="0"/>
-  <testcase name="CheckGameplayF1" classname="aidancrowther.blackjack.BlackJackTest" time="0.002"/>
+  <testcase name="CheckBBJ" classname="aidancrowther.blackjack.BlackJackTest" time="0"/>
+  <testcase name="CheckPBJ" classname="aidancrowther.blackjack.BlackJackTest" time="0.001"/>
+  <testcase name="CheckGameplayF1" classname="aidancrowther.blackjack.BlackJackTest" time="0.001"/>
   <testcase name="CheckGameplayF2" classname="aidancrowther.blackjack.BlackJackTest" time="0.004"/>
-  <testcase name="CheckGameplayF3" classname="aidancrowther.blackjack.BlackJackTest" time="0.002"/>
-  <testcase name="CheckGameplayF4" classname="aidancrowther.blackjack.BlackJackTest" time="0.003"/>
+  <testcase name="CheckGameplayF3" classname="aidancrowther.blackjack.BlackJackTest" time="0.003"/>
+  <testcase name="CheckGameplayF4" classname="aidancrowther.blackjack.BlackJackTest" time="0.004"/>
   <testcase name="CheckGameplayF5" classname="aidancrowther.blackjack.BlackJackTest" time="0.004"/>
   <testcase name="CheckGameplayF6" classname="aidancrowther.blackjack.BlackJackTest" time="0.001"/>
   <testcase name="CheckGameplayF7" classname="aidancrowther.blackjack.BlackJackTest" time="0.003"/>
   <testcase name="CheckInvalidCatch" classname="aidancrowther.blackjack.BlackJackTest" time="0.001"/>
   <testcase name="CheckT" classname="aidancrowther.blackjack.BlackJackTest" time="0"/>
   <testcase name="CheckDealingDeck" classname="aidancrowther.blackjack.BlackJackTest" time="0"/>
-  <testcase name="CheckDealingFile" classname="aidancrowther.blackjack.BlackJackTest" time="0.001"/>
+  <testcase name="CheckDealingFile" classname="aidancrowther.blackjack.BlackJackTest" time="0"/>
 </testsuite>
