@@ -11,6 +11,18 @@ import java.util.*;
 public class BlackJackTest{
 
     @Test
+    //Test that there is a choice between command/file input
+    public void CheckInputChoices(){
+
+        BlackJack.scanner = new Scanner("f");
+        BlackJack.init();
+
+        assertTrue(BlackJack.outputHistory.contains("Please select control method:"));
+        assertTrue(BlackJack.outputHistory.contains("C) Command Line"));
+        assertTrue(BlackJack.outputHistory.contains("F) File input"));
+    }
+    
+    @Test
     //Test that the program accepts file input mode
     public void CheckFileInput(){
 
