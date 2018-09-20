@@ -31,7 +31,7 @@ public class BlackJack{
     protected static Scanner scanner = new Scanner(System.in);
 
     public static void main(String args[]){
-        fileGame();
+        fileGame(true);
     }
 
     protected static void init(){
@@ -290,6 +290,61 @@ public class BlackJack{
         dealers.add(new Player(true));
 
         dealHands(s);
+    }
+
+    //Determine who has won the current round
+    protected static void getWinner(){
+
+        //Define local variables to track win state
+        Boolean playerBust = true;
+        Boolean dealerBust = true;
+        int playerMax = 0;
+        int dealerMax = 0;
+
+        //Iterate over all dealers and players to check all hands
+        for(Player dealer : dealers){
+
+            //Determine whether any blackjacks have occured, and if so, exit
+            if(dealer.hasBJ()){
+                output("Dealer has blackjack, dealer wins!");
+                return;
+            }
+
+            for(Player player : players){
+
+                if(player.hasBJ()){
+                    output("Player has blackjack, player wins!");
+                    return;
+                }
+
+                //
+                if(dealer.getHandValue() > dealerMax && dealer.getHandValue() <= 21) dealerMax = dealer.getHandValue();
+                if(player.getHandValue() > playerMax && player.getHandValue() <= 21) playerMax = player.getHandValue();
+
+                playerBust &= player.getHandValue() > 21;
+                dealerBust &= dealer.getHandValue() > 21;
+            }
+        }
+
+        if(playerBust){
+            output("Player busts, dealer wins!");
+        }
+        else if(dealerBust){
+            output("Dealer busts, player wins!");
+        }
+        else if(dealerMax > playerMax){
+            output("Score is " + playerMax+ " to " + dealerMax);
+            output("Dealer wins!");
+        }
+        else if(dealerMax < playerMax){
+            output("Score is " + playerMax + " to " + dealerMax);
+            output("Player wins!");
+        }
+        else{
+            output("Score is " + playerMax + " to " + dealerMax);
+            output("Tie game!");
+        }
+        
     }
 
 }

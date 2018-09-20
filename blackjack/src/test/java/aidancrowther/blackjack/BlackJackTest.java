@@ -748,16 +748,16 @@ public class BlackJackTest{
 
         BlackJack.outputHistory = "";
 
-        Player dealer = new Player(false);
+        Player dealer = new Player(true);
         dealer.giveCard(new Card("H", "K"));
         dealer.giveCard(new Card("H", "6"));
 
-        Player player = new Player(true);
+        Player player = new Player(false);
         player.giveCard(new Card("C", "K"));
         player.giveCard(new Card("C", "Q"));
         player.giveCard(new Card("C", "A"));
 
-        Player player2 = new Player(true);
+        Player player2 = new Player(false);
         player2.giveCard(new Card("C", "K"));
         player2.giveCard(new Card("C", "Q"));
 
@@ -781,16 +781,16 @@ public class BlackJackTest{
 
         BlackJack.outputHistory = "";
 
-        Player dealer = new Player(false);
+        Player dealer = new Player(true);
         dealer.giveCard(new Card("H", "K"));
         dealer.giveCard(new Card("H", "6"));
 
-        Player player2 = new Player(true);
+        Player player2 = new Player(false);
         player2.giveCard(new Card("C", "K"));
         player2.giveCard(new Card("C", "Q"));
         player2.giveCard(new Card("C", "A"));
 
-        Player player = new Player(true);
+        Player player = new Player(false);
         player.giveCard(new Card("C", "K"));
         player.giveCard(new Card("C", "Q"));
 
@@ -814,16 +814,16 @@ public class BlackJackTest{
 
         BlackJack.outputHistory = "";
 
-        Player dealer = new Player(false);
+        Player dealer = new Player(true);
         dealer.giveCard(new Card("H", "K"));
         dealer.giveCard(new Card("H", "6"));
 
-        Player player = new Player(true);
+        Player player = new Player(false);
         player.giveCard(new Card("C", "K"));
         player.giveCard(new Card("C", "Q"));
         player.giveCard(new Card("C", "A"));
 
-        Player player2 = new Player(true);
+        Player player2 = new Player(false);
         player2.giveCard(new Card("C", "K"));
         player2.giveCard(new Card("C", "Q"));
         player2.giveCard(new Card("C", "J"));
@@ -848,16 +848,16 @@ public class BlackJackTest{
 
         BlackJack.outputHistory = "";
 
-        Player dealer = new Player(false);
+        Player dealer = new Player(true);
         dealer.giveCard(new Card("H", "K"));
         dealer.giveCard(new Card("H", "6"));
 
-        Player player2 = new Player(true);
+        Player player2 = new Player(false);
         player2.giveCard(new Card("C", "K"));
         player2.giveCard(new Card("C", "Q"));
         player2.giveCard(new Card("C", "A"));
 
-        Player player = new Player(true);
+        Player player = new Player(false);
         player.giveCard(new Card("C", "K"));
         player.giveCard(new Card("C", "Q"));
         player.giveCard(new Card("C", "J"));
@@ -871,7 +871,7 @@ public class BlackJackTest{
 
         BlackJack.getWinner();
 
-        assertTrue(BlackJack.outputHistory.contains("Dealer wins!"));
+        assertTrue(BlackJack.outputHistory.contains("Player wins!"));
         assertTrue(BlackJack.outputHistory.contains("Score is 21 to 16"));
     }
 
@@ -882,19 +882,19 @@ public class BlackJackTest{
 
         BlackJack.outputHistory = "";
 
-        Player dealer = new Player(false);
+        Player dealer = new Player(true);
         dealer.giveCard(new Card("H", "K"));
         dealer.giveCard(new Card("H", "6"));
 
-        Player dealer2 = new Player(false);
+        Player dealer2 = new Player(true);
         dealer2.giveCard(new Card("S", "K"));
         dealer2.giveCard(new Card("S", "6"));
 
-        Player player = new Player(true);
+        Player player = new Player(false);
         player.giveCard(new Card("C", "K"));
         player.giveCard(new Card("C", "6"));
 
-        Player player2 = new Player(true);
+        Player player2 = new Player(false);
         player2.giveCard(new Card("D", "K"));
         player2.giveCard(new Card("D", "6"));
 
@@ -918,19 +918,19 @@ public class BlackJackTest{
 
         BlackJack.outputHistory = "";
 
-        Player dealer = new Player(false);
+        Player dealer = new Player(true);
         dealer.giveCard(new Card("H", "K"));
         dealer.giveCard(new Card("H", "6"));
 
-        Player dealer2 = new Player(false);
+        Player dealer2 = new Player(true);
         dealer2.giveCard(new Card("S", "K"));
         dealer2.giveCard(new Card("S", "6"));
 
-        Player player = new Player(true);
+        Player player = new Player(false);
         player.giveCard(new Card("C", "K"));
         player.giveCard(new Card("C", "6"));
 
-        Player player2 = new Player(true);
+        Player player2 = new Player(false);
         player2.giveCard(new Card("D", "K"));
         player2.giveCard(new Card("D", "A"));
 
@@ -944,7 +944,7 @@ public class BlackJackTest{
 
         BlackJack.getWinner();
 
-        assertTrue(BlackJack.outputHistory.contains("Dealer has blackjack, dealer wins!"));
+        assertTrue(BlackJack.outputHistory.contains("Player has blackjack, player wins!"));
     }
 
     @Test
@@ -954,19 +954,19 @@ public class BlackJackTest{
 
         BlackJack.outputHistory = "";
 
-        Player dealer = new Player(false);
+        Player dealer = new Player(true);
         dealer.giveCard(new Card("H", "K"));
         dealer.giveCard(new Card("H", "6"));
 
-        Player dealer2 = new Player(false);
+        Player dealer2 = new Player(true);
         dealer2.giveCard(new Card("S", "K"));
         dealer2.giveCard(new Card("S", "A"));
 
-        Player player = new Player(true);
+        Player player = new Player(false);
         player.giveCard(new Card("C", "K"));
         player.giveCard(new Card("C", "6"));
 
-        Player player2 = new Player(true);
+        Player player2 = new Player(false);
         player2.giveCard(new Card("D", "K"));
         player2.giveCard(new Card("D", "6"));
 
@@ -980,6 +980,6 @@ public class BlackJackTest{
 
         BlackJack.getWinner();
 
-        assertTrue(BlackJack.outputHistory.contains("Player has blackjack, player wins!"));
+        assertTrue(BlackJack.outputHistory.contains("Dealer has blackjack, dealer wins!"));
     }
 }
